@@ -11,7 +11,10 @@ function App() {
 
     <Provider store={ourStore()}>
         <Header />
+        
         <Products />
+       
+        
        <Footer />
       </Provider>
     

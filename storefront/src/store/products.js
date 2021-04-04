@@ -1,11 +1,11 @@
 let initialState ={
     productList: [
-        { "_id": "5f1a51f01910080017657ed2", "name": "1TB USB", "category": "electronics", "inStock": 963, "price": 19.99,},
-        { "_id": "5f1a51f01910080017657ed2", "name": "PIZZA", "category": "food", "inStock": 963, "price": 15.99,},
-        { "_id": "5f1a51f01910080017657ed2", "name": "PHONE", "category": "electronics", "inStock": 963, "price": 100,},
-        { "_id": "5f1a51f01910080017657ed2", "name": "PASTA", "category": "food", "inStock": 963, "price": 11.99,},
-        { "_id": "5f1a51f01910080017657ed2", "name": "TACOS", "category": "food", "inStock": 963, "price": 15.99,},
-        { "_id": "5f1a51f01910080017657ed2", "name": "LAPTOP", "category": "electronics", "inStock": 963, "price": 100,},
+        { _id: "5f1a51f01910080017657ed2", name: "1TB USB", category: "electronics", inStock: 963, price: 19.99,},
+        { _id: "5f1a51f01910080017657ed2", name: "PIZZA", category: "food", inStock: 963, price: 15.99,},
+        { _id: "5f1a51f01910080017657ed2", name: "PHONE", category: "electronics", inStock: 963, price: 100,},
+        { _id: "5f1a51f01910080017657ed2", name: "PASTA", category: "food", inStock: 963, price: 11.99,},
+        { _id: "5f1a51f01910080017657ed2", name: "TACOS", category: "food", inStock: 963, price: 15.99,},
+        { _id: "5f1a51f01910080017657ed2", name: "LAPTOP", category: "electronics", inStock: 963, price: 100,},
 
     ],
     activeProduct: '',
@@ -23,9 +23,9 @@ export default function productReducer(state=initialState, action) {
             default: 
             return state;
 
-        case "DETAILS":
-            const record = state.filter( products => products.name === payload.name);
-            return record;
+        // case "DETAILS":
+        //     const record = state.filter( products => products.category === payload.name);
+        //     return record;
     }
 
 

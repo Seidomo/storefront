@@ -1,7 +1,7 @@
 let initialState = {
     categories : [
-        { name: "food", description: "food stuff"},
-        { name: "eletronics", description: "eletronicall stuff"}
+        { _id: "5f1a51f01910080017657ed2", name: "food", description: "food stuff"},
+        { _id: "5f1a51f01910080017657ed2", name: "eletronics", description: "eletronicall stuff"}
     ],
 
     activatedCategory: '',
