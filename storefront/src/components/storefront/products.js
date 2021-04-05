@@ -7,21 +7,28 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { connect } from 'react-redux'; // this ensures that we are connected to our redux store
 
 // import directly from the store directory.
 import { initialize, activated } from '../../store/categories.js';
 import { getProducts} from '../../store/products.js';
+import  addToCart from '../../store/cart.js';
+
 const Products = (props) => {
   return (
     <>
-      <Typography variant="h3" component="h3">Products</Typography>
-      <Button onClick={ () => props.activated('electronics')} >ELETRONICS</Button>
-      <Button onClick={ () => props.activated('food')} >FOOD</Button>
+      {/* <Typography variant="h4" component="h4">Products</Typography> */}
+      {/* <Button onClick={ () => props.activated('electronics')} >ELETRONICS</Button>
+      <Button onClick={ () => props.activated('food')} >FOOD</Button> */}
+      
+        
+      <Button  >CART</Button> 
       {console.log(props)}
       <Grid container justify="center" spacing={5}>
         {props.products.productList.map((product, index )=> {
+          
            if (product.category === props.activatedCategory) {
           return (
             <Grid item key={index}>
@@ -30,10 +37,10 @@ const Products = (props) => {
                 
                 <CardContent>
                   {/* <Typography variant="p" component="p">Details</Typography> */}
-                  <Typography variant="p" component="p">price: ${product.price}</Typography>
+                  <Typography  component="p">price: ${product.price}</Typography>
                 </CardContent>
                 <CardActions>
-                  <IconButton> ADD TO CART</IconButton>
+                  <IconButton onClick= {() => props.addToCart(product)}> ADD TO CART</IconButton>
                   <IconButton> SHOW DETAILS</IconButton>
                 </CardActions>
               </Card>
@@ -61,8 +68,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getProducts,
   initialize,
-  activated
+  activated,
+  addToCart,
 }
 
 // connect() returns a function that consumes a React Component
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Products,);
