@@ -36,7 +36,7 @@ export default function categoryReducer(state = initialState, action) {
           type: "ACTIVE",
           payload: {
             category,
-            description
+            description,
           }
           };
       };
