@@ -24,7 +24,7 @@ const Products = (props) => {
   useEffect(() => {
     props.loadProducts();
   }, []);
-
+console.log('props', props);
   return (
     <>
       {/* <Typography variant="h4" component="h4">Products</Typography> */}
@@ -36,7 +36,7 @@ const Products = (props) => {
       {console.log(props)}
       <Grid container justify="center" spacing={5}>
         {props.products.productList.map((product, i)=> {
-          
+          console.log(product.category, props.activatedCategory);
            if (product.category === props.activatedCategory) {
           return (
             <Grid item key={i}>
