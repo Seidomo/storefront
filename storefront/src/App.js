@@ -1,5 +1,6 @@
 import Header from './components/header/header.js';
 import Footer from './components/footer/footer.js';
+import Category from './components/storefront/categories.js';
 import Products from './components/storefront/products.js';
 import { Provider } from 'react-redux';
 import ourStore from './store/index.js';
@@ -11,7 +12,7 @@ function App() {
 
     <Provider store={ourStore()}>
         <Header />
-        
+        <Category  />
         <Products />
        
         
