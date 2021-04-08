@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
+
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,10 +13,18 @@ import { connect } from 'react-redux'; // this ensures that we are connected to 
 
 // import directly from the store directory.
 import { initialize, activated } from '../../store/categories.js';
-import { getProducts} from '../../store/products.js';
-import  addToCart from '../../store/cart.js';
+import { getProducts, loadProducts} from '../../store/products.js';
+import  { addToCart }from '../../store/cart.js';
+import { useEffect } from 'react';
+
+
+
 
 const Products = (props) => {
+  useEffect(() => {
+    props.loadProducts();
+  }, []);
+
   return (
     <>
       {/* <Typography variant="h4" component="h4">Products</Typography> */}
@@ -24,14 +32,14 @@ const Products = (props) => {
       <Button onClick={ () => props.activated('food')} >FOOD</Button> */}
       
         
-      <Button  >CART</Button> 
+      {/* <Button  >CART</Button>  */}
       {console.log(props)}
       <Grid container justify="center" spacing={5}>
-        {props.products.productList.map((product, index )=> {
+        {props.products.productList.map((product, i)=> {
           
            if (product.category === props.activatedCategory) {
           return (
-            <Grid item key={index}>
+            <Grid item key={i}>
               <Card>
                 <CardHeader title={product.name} />
                 
@@ -61,7 +69,9 @@ const Products = (props) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
-    activatedCategory: state.category.activatedCategory
+    activatedCategory: state.category.activatedCategory,
+    activatedDescription: state.description,
+    
   }
 }
 
@@ -70,7 +80,8 @@ const mapDispatchToProps = {
   initialize,
   activated,
   addToCart,
+  loadProducts,
 }
 
 // connect() returns a function that consumes a React Component
-export default connect(mapStateToProps, mapDispatchToProps)(Products,);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
