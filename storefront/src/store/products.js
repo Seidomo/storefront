@@ -19,21 +19,28 @@ let initialState = {
     productList: [],
     activeProduct: '',
     products: [],
+    count: 0,
   };
 
 export default function productReducer(state=initialState, action) {
     const { type, payload } = action;
 
     switch(type){
-        case "ACTIVE":
-            const products = getProducts(payload.category);
-            return {...state, products: products}
+        
         case "LOADING":
+          console.log('loading');
             return{
                 productList: payload.results,
+                count: payload.count,
             }
+
+            case "ACTIVE":
+            const products = getProducts(payload.category);
+            return {...state, products: products}
             default: 
             return state;
+
+            
 
         // case "DETAILS":
         //     const record = state.filter( products => products.category === payload.name);
@@ -43,21 +50,25 @@ export default function productReducer(state=initialState, action) {
 
 }
 
+export const loadProducts = () => (dispatch, getState) => {
+  console.log('here');
+  return axios.get('https://api-js401.herokuapp.com/api/v1/products')
+    .then(response => {
+      console.log(response.data);
+      dispatch({
+        type: 'LOADING',
+        payload: response.data
+      });
+    });
+}
+
 export const getProducts = (category) => {
     const products = initialState.productList;
     const response = products.filter(product => product.category === category);
     return response;
   } 
 
-  export const loadProducts = () => (dispatch, getState) => {
-    return axios.get('https://api-js401.herokuapp.com/api/v1/products')
-      .then(response => {
-        dispatch({
-          type: 'LOAD_PRODUCTS',
-          payload: response.data
-        });
-      });
-  }
+  
   
 
 //   export const getProduct = (product) => {
